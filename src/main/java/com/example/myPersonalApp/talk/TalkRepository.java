@@ -1,4 +1,8 @@
 package com.example.myPersonalApp.talk;
 
-public interface TalkRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface TalkRepository extends JpaRepository<Talk,Long> {
 }
