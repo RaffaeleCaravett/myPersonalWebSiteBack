@@ -1,5 +1,9 @@
 package com.example.myPersonalApp.auth;
 
+import com.example.myPersonalApp.enums.Role;
+import com.example.myPersonalApp.payloads.entities.Token;
+import com.example.myPersonalApp.payloads.entities.UserLoginDTO;
+import com.example.myPersonalApp.payloads.entities.UserRegistrationDTO;
 import com.example.myPersonalApp.user.User;
 import com.example.myPersonalApp.user.UserRepository;
 import com.example.myPersonalApp.user.UserService;
@@ -47,8 +51,8 @@ public class AuthService {
         User newUser = new User();
         newUser.setPassword(bcrypt.encode(body.password()));
         newUser.setEmail(body.email());
-        newUser.setName(body.nome());
-        newUser.setSurname(body.cognome());
+        newUser.setNome(body.nome());
+        newUser.setCognome(body.cognome());
         newUser.setRole(Role.ADMIN);
         userRepository.save(newUser);
 

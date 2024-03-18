@@ -1,5 +1,8 @@
 package com.example.myPersonalApp.auth;
 
+import com.example.myPersonalApp.payloads.entities.Token;
+import com.example.myPersonalApp.payloads.entities.UserLoginDTO;
+import com.example.myPersonalApp.payloads.entities.UserRegistrationDTO;
 import com.example.myPersonalApp.user.User;
 import com.example.myPersonalApp.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
