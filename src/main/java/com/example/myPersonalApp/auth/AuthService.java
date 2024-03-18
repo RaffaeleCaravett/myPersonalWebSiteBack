@@ -1,6 +1,8 @@
 package com.example.myPersonalApp.auth;
 
 import com.example.myPersonalApp.enums.Role;
+import com.example.myPersonalApp.exceptions.BadRequestException;
+import com.example.myPersonalApp.exceptions.UnauthorizedException;
 import com.example.myPersonalApp.payloads.entities.Token;
 import com.example.myPersonalApp.payloads.entities.UserLoginDTO;
 import com.example.myPersonalApp.payloads.entities.UserRegistrationDTO;
