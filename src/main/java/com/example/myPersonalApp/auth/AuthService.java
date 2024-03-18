@@ -6,6 +6,7 @@ import com.example.myPersonalApp.exceptions.UnauthorizedException;
 import com.example.myPersonalApp.payloads.entities.Token;
 import com.example.myPersonalApp.payloads.entities.UserLoginDTO;
 import com.example.myPersonalApp.payloads.entities.UserRegistrationDTO;
+import com.example.myPersonalApp.security.JWTTools;
 import com.example.myPersonalApp.user.User;
 import com.example.myPersonalApp.user.UserRepository;
 import com.example.myPersonalApp.user.UserService;
