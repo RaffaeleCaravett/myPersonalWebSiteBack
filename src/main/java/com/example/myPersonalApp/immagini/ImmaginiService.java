@@ -1,5 +1,6 @@
 package com.example.myPersonalApp.immagini;
 
+import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.example.myPersonalApp.exceptions.BadRequestException;
 import com.example.myPersonalApp.payloads.entities.ImmaginiDTO;
@@ -16,6 +17,8 @@ public class ImmaginiService {
 
     @Autowired
     ImmaginiRepository immaginiRepository;
+    @Autowired
+    Cloudinary cloudinary;
 @Autowired
     TalkRepository talkRepository;
 
