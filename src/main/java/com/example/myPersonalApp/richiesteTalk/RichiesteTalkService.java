@@ -49,5 +49,6 @@ public class RichiesteTalkService {
 
         return richiesteTalkRepository.save(richiesteTalk);
     }
-    
+
+
 }
