@@ -1,5 +1,6 @@
 package com.example.myPersonalApp.immagini;
 
+import com.example.myPersonalApp.talk.Talk;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -14,6 +15,7 @@ public class Immagini {
     long id;
     private String link;
     @ManyToOne
+    @JoinColumn(name = "talk_id")
     @JsonIgnore
-    private Task task;
+    private Talk talk;
 }
