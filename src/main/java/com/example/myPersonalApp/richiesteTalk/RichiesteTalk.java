@@ -1,5 +1,7 @@
 package com.example.myPersonalApp.richiesteTalk;
 
+import com.example.myPersonalApp.enums.Categoria;
+import com.example.myPersonalApp.enums.Stato;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,5 +18,7 @@ public class RichiesteTalk {
     private String linkProfilo;
     private String professione;
     private int eta;
+    private Categoria categoria;
     private String testo;
+    private Stato stato;
 }
