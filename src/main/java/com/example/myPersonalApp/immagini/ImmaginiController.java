@@ -18,10 +18,22 @@ public class ImmaginiController {
 
 
     @PostMapping("")
-    public Immagini uploadAvatar(@RequestBody @Validated ImmaginiDTO immaginiDTO, BindingResult validation, @RequestParam("immagine") MultipartFile body) throws IOException {
+    public Immagini save(@RequestBody @Validated ImmaginiDTO immaginiDTO, BindingResult validation, @RequestParam("immagine") MultipartFile body) throws IOException {
        if(validation.hasErrors()){
            throw new BadRequestException(validation.getAllErrors());
        }
         return immaginiService.save(immaginiDTO,body);
     }
+    @PutMapping("/{id}/{talk_id}")
+    public Immagini putById(@RequestBody ImmaginiDTO immaginiDTO,BindingResult validation,@PathVariable long id,@PathVariable long talk_id,@RequestParam("immagine") MultipartFile file){
+     if(validation.hasErrors()){
+         throw new BadRequestException(validation.getAllErrors());
+     }
+     return immaginiService.putById(id,talk_id,immaginiDTO,file);
+    }
+@DeleteMapping("/{id}")
+    public boolean deleteById(@PathVariable long id){
+        return immaginiService.deleteById(id);
+}
+
 }
