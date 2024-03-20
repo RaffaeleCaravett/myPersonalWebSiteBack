@@ -5,8 +5,6 @@ import jakarta.validation.constraints.NotNull;
 
 public record ImmaginiDTO(
         @NotNull(message = "Talk id necessario")
-        long talk_id,
-        @NotEmpty(message = "Link necessario")
-        String link
+        long talk_id
 ) {
 }

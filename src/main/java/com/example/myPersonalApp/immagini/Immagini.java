@@ -14,6 +14,7 @@ public class Immagini {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     private String link;
+    private Position position;
     @ManyToOne
     @JoinColumn(name = "talk_id")
     @JsonIgnore

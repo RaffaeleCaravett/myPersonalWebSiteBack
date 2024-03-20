@@ -37,5 +37,35 @@ public class ImmaginiService {
                 throw new RuntimeException("Impossibile caricare l'immagine", e);
             }
         }
+
+public Immagini putById(long id, long talk_id, MultipartFile file){
+    try {
+        Immagini immagini = immaginiRepository.findById(id).orElseThrow(()->
+                new BadRequestException("Immagine non presente in db"));
+        if(immagini.getTalk().getId()==talk_id) {
+
+            Map<String, Object> uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
+            String imageUrl = (String) uploadResult.get("url");
+            immagini.setLink(imageUrl);
+            return immaginiRepository.save(immagini);
+        }else {
+            throw new BadRequestException("Talk id diverso dal talk id dell'immagine");
+        }
+
+    } catch (IOException e) {
+        throw new RuntimeException("Impossibile caricare l'immagine", e);
     }
+
+}
+
+    public boolean deleteById(long id){
+        try {
+            immaginiRepository.deleteById(id);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+
 }
