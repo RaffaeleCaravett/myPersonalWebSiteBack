@@ -2,6 +2,7 @@ package com.example.myPersonalApp.immagini;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.example.myPersonalApp.enums.Position;
 import com.example.myPersonalApp.exceptions.BadRequestException;
 import com.example.myPersonalApp.payloads.entities.ImmaginiDTO;
 import com.example.myPersonalApp.talk.TalkRepository;
@@ -31,6 +32,7 @@ public class ImmaginiService {
 
             immagini.setTalk(talkRepository.findById(immaginiDTO.talk_id()).orElseThrow(()->new BadRequestException("Talk non presente. Impossibile salvare l'immagine")));
             immagini.setLink(imageUrl);
+            immagini.setPosition(Position.valueOf(immaginiDTO.posizione()));
 
                 return immaginiRepository.save(immagini);
             } catch (IOException e) {
@@ -38,7 +40,7 @@ public class ImmaginiService {
             }
         }
 
-public Immagini putById(long id, long talk_id, MultipartFile file){
+public Immagini putById(long id, long talk_id,ImmaginiDTO immaginiDTO, MultipartFile file){
     try {
         Immagini immagini = immaginiRepository.findById(id).orElseThrow(()->
                 new BadRequestException("Immagine non presente in db"));
@@ -47,6 +49,7 @@ public Immagini putById(long id, long talk_id, MultipartFile file){
             Map<String, Object> uploadResult = cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
             String imageUrl = (String) uploadResult.get("url");
             immagini.setLink(imageUrl);
+            immagini.setPosition(Position.valueOf(immaginiDTO.posizione()));
             return immaginiRepository.save(immagini);
         }else {
             throw new BadRequestException("Talk id diverso dal talk id dell'immagine");
