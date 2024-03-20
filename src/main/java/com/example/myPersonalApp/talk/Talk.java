@@ -15,6 +15,7 @@ public class Talk {
 @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Lob
 private String testo;
 private Categoria categoria;
 @OneToMany(mappedBy = "talk")
