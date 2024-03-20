@@ -1,5 +1,6 @@
 package com.example.myPersonalApp.immagini;
 
+import com.example.myPersonalApp.enums.Position;
 import com.example.myPersonalApp.talk.Talk;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
