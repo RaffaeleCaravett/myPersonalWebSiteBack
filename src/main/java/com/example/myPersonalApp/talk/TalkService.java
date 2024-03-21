@@ -58,4 +58,11 @@ public Page<Talk> getAllPaginated(int page,int size,String orderBy){
 public Page<Talk> findByCategoria(Categoria categoria){
         return talkRepository.findByCategoria(categoria);
 }
+
+public Page<Talk> findByTitolo(String titolo){
+        return talkRepository.findByTitoloContainingIgnoringCase(titolo);
+}
+    public Page<Talk> findByTitoloAndCategoria(String titolo,Categoria categoria){
+        return talkRepository.findByTitoloContainingIgnoringCaseAndCategoria(titolo,categoria);
+    }
 }

@@ -10,5 +10,7 @@ public interface TalkRepository extends JpaRepository<Talk,Long> {
 
 
     Page<Talk> findByCategoria(Categoria categoria);
+    Page<Talk> findByTitoloContainingIgnoringCase(String titolo);
+    Page<Talk> findByTitoloContainingIgnoringCaseAndCategoria(String titolo,Categoria categoria);
 
 }
