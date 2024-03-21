@@ -53,4 +53,7 @@ public Page<Talk> getAllPaginated(int page,int size,String orderBy){
     return talkRepository.findAll(pageable);
 }
 
+public Page<Talk> findByCategoria(Categoria categoria){
+        return talkRepository.findByCategoria(categoria);
+}
 }
