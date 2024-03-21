@@ -5,6 +5,7 @@ import com.example.myPersonalApp.exceptions.BadRequestException;
 import com.example.myPersonalApp.payloads.entities.TalkDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ public class TalkController {
     TalkService talkService;
 
     @PostMapping("")
+        @PreAuthorize("hasAuthority('Admin')")
     public Talk save(@RequestBody @Validated TalkDTO talkDTO, BindingResult validation){
         if(validation.hasErrors()){
             throw new BadRequestException(validation.getAllErrors());
@@ -45,11 +47,13 @@ public class TalkController {
         return talkService.findByTitoloAndCategoria(titolo,categoria1);
     }
     @DeleteMapping("/{id}")
+        @PreAuthorize("hasAuthority('Admin')")
     public boolean deleteById(@PathVariable long id){
         return talkService.deleteById(id);
     }
 
     @PutMapping("/{id}")
+        @PreAuthorize("hasAuthority('Admin')")
     public Talk putById(@PathVariable long id,@RequestBody TalkDTO talkDTO){
         return talkService.putById(id,talkDTO);
     }
