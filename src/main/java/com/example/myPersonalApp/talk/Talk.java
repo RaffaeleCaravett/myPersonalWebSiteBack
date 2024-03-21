@@ -18,6 +18,7 @@ public class Talk {
     @Lob
 private String testo;
 private Categoria categoria;
+private String titolo;
 @OneToMany(mappedBy = "talk")
 private List<Immagini> immagini;
 @ManyToOne

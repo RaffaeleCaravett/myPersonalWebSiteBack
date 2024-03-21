@@ -23,6 +23,7 @@ public class TalkService {
         talk.setCategoria(Categoria.valueOf(talkDTO.categoria()));
         talk.setUser(userRepository.findById(talkDTO.user_id()).orElseThrow(()->new BadRequestException("User id non presente in database.")));
         talk.setTesto(talkDTO.testo());
+        talk.setTitolo(talkDTO.titolo());
 
         return talkRepository.save(talk);
     }
@@ -30,6 +31,7 @@ public class TalkService {
     public Talk putById(long id, TalkDTO talkDTO){
         Talk talk = talkRepository.findById(id).orElseThrow(()->new BadRequestException("User id non presente in database"));
         talk.setTesto(talkDTO.testo());
+        talk.setTitolo(talkDTO.titolo());
         talk.setCategoria(Categoria.valueOf(talkDTO.categoria()));
         talk.setUser(userRepository.findById(talkDTO.user_id()).orElseThrow(()->new BadRequestException("User id non presente in database.")));
 return talkRepository.save(talk);

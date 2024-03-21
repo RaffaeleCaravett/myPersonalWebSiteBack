@@ -10,6 +10,8 @@ public record TalkDTO(
         @NotNull(message = "User id vuoto")
 long user_id,
         @NotEmpty(message = "Testo vuoto")
-        String testo
+        String testo,
+        @NotEmpty(message = "Titolo necessario")
+        String titolo
         ) {
 }
