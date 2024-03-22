@@ -57,15 +57,15 @@ public Page<Talk> getAllPaginated(int page,int size,String orderBy){
 
 public Page<Talk> findByCategoria(Categoria categoria,int page,int size,String orderBy){
         Pageable pageable = PageRequest.of(page,size,Sort.by(orderBy));
-        return talkRepository.findByCategoria(categoria);
+        return talkRepository.findByCategoria(pageable,categoria);
 }
 
 public Page<Talk> findByTitolo(String titolo,int page,int size,String orderBy){
         Pageable pageable = PageRequest.of(page,size,Sort.by(orderBy));
-        return talkRepository.findByTitoloContainingIgnoringCase(titolo);
+        return talkRepository.findByTitoloContainingIgnoringCase(pageable,titolo);
 }
     public Page<Talk> findByTitoloAndCategoria(String titolo,Categoria categoria,int page,int size,String orderBy){
         Pageable pageable = PageRequest.of(page,size,Sort.by(orderBy));
-        return talkRepository.findByTitoloContainingIgnoringCaseAndCategoria(titolo,categoria);
+        return talkRepository.findByTitoloContainingIgnoringCaseAndCategoria(pageable,titolo,categoria);
     }
 }

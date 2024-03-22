@@ -2,6 +2,7 @@ package com.example.myPersonalApp.talk;
 
 import com.example.myPersonalApp.enums.Categoria;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,8 +10,8 @@ import org.springframework.stereotype.Repository;
 public interface TalkRepository extends JpaRepository<Talk,Long> {
 
 
-    Page<Talk> findByCategoria(Categoria categoria);
-    Page<Talk> findByTitoloContainingIgnoringCase(String titolo);
-    Page<Talk> findByTitoloContainingIgnoringCaseAndCategoria(String titolo,Categoria categoria);
+    Page<Talk> findByCategoria(Pageable pageable,Categoria categoria);
+    Page<Talk> findByTitoloContainingIgnoringCase(Pageable pageable,String titolo);
+    Page<Talk> findByTitoloContainingIgnoringCaseAndCategoria(Pageable pageable,String titolo,Categoria categoria);
 
 }
