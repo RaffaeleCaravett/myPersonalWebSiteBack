@@ -17,7 +17,8 @@ public class Talk {
     private long id;
     @Lob
 private String testo;
-private Categoria categoria;
+    @Enumerated(EnumType.STRING)
+    private Categoria categoria;
 private String titolo;
 @OneToMany(mappedBy = "talk")
 private List<Immagini> immagini;
