@@ -18,6 +18,7 @@ public class RichiesteTalk {
     private String linkProfilo;
     private String professione;
     private int eta;
+    @Enumerated(EnumType.STRING)
     private Categoria categoria;
     private String testo;
     private Stato stato;
