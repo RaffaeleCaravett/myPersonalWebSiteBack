@@ -36,18 +36,18 @@ public class TalkController {
     public  Page<Talk> getAllByCategoria(@PathVariable String categoria,
 @RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "10")int size,@RequestParam(defaultValue = "id") String orderBy){
         Categoria categoria1 = Categoria.valueOf(categoria);
-        return talkService.findByCategoria(categoria1),page,size,orderBy;
+        return talkService.findByCategoria(categoria1,page,size,orderBy);
     }
     @GetMapping("/titolo/{titolo}")
     public  Page<Talk> getAllByTitolo(@PathVariable String titolo,
 @RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "10")int size,@RequestParam(defaultValue = "id") String orderBy){
-        return talkService.findByTitolo(titolo),page,size,orderBy;
+        return talkService.findByTitolo(titolo,page,size,orderBy);
     }
     @GetMapping("/titoloAndCategoria/{titolo}/{categoria}")
     public  Page<Talk> getAllByTitoloAndCategoria(@PathVariable String titolo,@PathVariable String categoria,
 @RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "10")int size,@RequestParam(defaultValue = "id") String orderBy){
         Categoria categoria1 = Categoria.valueOf(categoria);
-        return talkService.findByTitoloAndCategoria(titolo,categoria1),page,size,orderBy;
+        return talkService.findByTitoloAndCategoria(titolo,categoria1,page,size,orderBy);
     }
     @DeleteMapping("/{id}")
         @PreAuthorize("hasAuthority('Admin')")
