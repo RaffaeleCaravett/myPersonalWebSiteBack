@@ -1,5 +1,6 @@
 package com.example.myPersonalApp.auth;
 
+import com.example.myPersonalApp.enums.Categoria;
 import com.example.myPersonalApp.exceptions.BadRequestException;
 import com.example.myPersonalApp.payloads.entities.Token;
 import com.example.myPersonalApp.payloads.entities.UserLoginDTO;
@@ -15,6 +16,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/auth")
@@ -61,6 +64,16 @@ public class AuthController {
         return jwtTools.verifyRefreshToken(refreshToken);
     }
 
+@GetMapping("/categorie")
+public List<Categoria> getAllCategories(){
+        List<Categoria> categorias =new ArrayList<>();
+        categorias.add(Categoria.Fitness);
+        categorias.add(Categoria.Business);
+        categorias.add(Categoria.Career);
+        categorias.add(Categoria.Work);
+        categorias.add(Categoria.Travels);
+        categorias.add(Categoria.Health);
 
-
+        return categorias;
+}
 }
