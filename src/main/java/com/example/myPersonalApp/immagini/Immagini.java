@@ -15,6 +15,7 @@ public class Immagini {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     private String link;
+    @Enumerated(EnumType.STRING)
     private Position position;
     @ManyToOne
     @JoinColumn(name = "talk_id")
