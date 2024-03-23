@@ -17,14 +17,7 @@ public class RichiesteTalkController {
     RichiesteTalkService richiesteTalkService;
 
 
-@PostMapping("")
-    @PreAuthorize("hasAuthority('Admin')")
-    public RichiesteTalk save (@RequestBody @Validated RichiesteTalkDTO richiesteTalkDTO, BindingResult validation){
-    if(validation.hasErrors()){
-        throw new BadRequestException(validation.getAllErrors());
-    }
-    return richiesteTalkService.save(richiesteTalkDTO);
-}
+
 @GetMapping("")
     @PreAuthorize("hasAuthority('Admin')")
     public Page<RichiesteTalk> getAllPaginated(@RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "10") int size,

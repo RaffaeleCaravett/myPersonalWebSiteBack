@@ -2,10 +2,9 @@ package com.example.myPersonalApp.auth;
 
 import com.example.myPersonalApp.enums.Categoria;
 import com.example.myPersonalApp.exceptions.BadRequestException;
-import com.example.myPersonalApp.payloads.entities.Token;
-import com.example.myPersonalApp.payloads.entities.UserLoginDTO;
-import com.example.myPersonalApp.payloads.entities.UserLoginSuccessDTO;
-import com.example.myPersonalApp.payloads.entities.UserRegistrationDTO;
+import com.example.myPersonalApp.payloads.entities.*;
+import com.example.myPersonalApp.richiesteTalk.RichiesteTalk;
+import com.example.myPersonalApp.richiesteTalk.RichiesteTalkService;
 import com.example.myPersonalApp.security.JWTTools;
 import com.example.myPersonalApp.user.User;
 import com.example.myPersonalApp.user.UserService;
@@ -31,6 +30,8 @@ public class AuthController {
     @Autowired
     private UserService utenteService;
 
+    @Autowired
+    private RichiesteTalkService richiesteTalkService;
 
 
     @PostMapping("/login")
@@ -76,4 +77,11 @@ public List<Categoria> getAllCategories(){
 
         return categorias;
 }
+    @PostMapping("/richiesteTalk")
+    public RichiesteTalk save (@RequestBody @Validated RichiesteTalkDTO richiesteTalkDTO, BindingResult validation){
+        if(validation.hasErrors()){
+            throw new BadRequestException(validation.getAllErrors());
+        }
+        return richiesteTalkService.save(richiesteTalkDTO);
+    }
 }
