@@ -10,8 +10,6 @@ public record UserRegistrationDTO(
         String cognome,
         @NotEmpty(message = "Email obbligatorio")
         String email,
-        @NotNull(message = "Età necessaria")
-        int eta,
         @NotEmpty(message = "Password necessaria")
         String password
 ) {

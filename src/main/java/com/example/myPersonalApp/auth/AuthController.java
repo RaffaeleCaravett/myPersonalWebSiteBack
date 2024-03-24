@@ -46,10 +46,14 @@ public class AuthController {
         if(validation.hasErrors()){
             throw new BadRequestException(validation.getAllErrors());
         } else {
+            if(body.email().equals("raffaelecaravetta13@gmail.com")){
             try {
                 return authService.registerUser(body);
             } catch (IOException e) {
                 throw new RuntimeException(e);
+            }
+            }else {
+                throw new BadRequestException("Abbiamo già un admin per questo ufficio, ci dispiace.");
             }
         }
     }
