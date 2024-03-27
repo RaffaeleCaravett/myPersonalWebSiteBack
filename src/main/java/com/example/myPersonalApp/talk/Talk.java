@@ -17,7 +17,9 @@ public class Talk {
     private long id;
     @Lob
 private String testo1;
+    @Lob
     private String testo2;
+    @Lob
     private String testo3;
     @Enumerated(EnumType.STRING)
     private Categoria categoria;

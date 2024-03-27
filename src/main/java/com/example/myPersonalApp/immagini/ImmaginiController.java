@@ -20,7 +20,7 @@ public class ImmaginiController {
 
     @PostMapping("")
         @PreAuthorize("hasAuthority('Admin')")
-    public Immagini save(@RequestBody @Validated ImmaginiDTO immaginiDTO, BindingResult validation, @RequestParam("immagine") MultipartFile body) throws IOException {
+    public Immagini save(@RequestPart("immagineDTO") @Validated ImmaginiDTO immaginiDTO,BindingResult validation, @RequestPart("file") MultipartFile body) throws IOException {
        if(validation.hasErrors()){
            throw new BadRequestException(validation.getAllErrors());
        }

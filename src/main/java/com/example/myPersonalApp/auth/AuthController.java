@@ -6,9 +6,12 @@ import com.example.myPersonalApp.payloads.entities.*;
 import com.example.myPersonalApp.richiesteTalk.RichiesteTalk;
 import com.example.myPersonalApp.richiesteTalk.RichiesteTalkService;
 import com.example.myPersonalApp.security.JWTTools;
+import com.example.myPersonalApp.talk.Talk;
+import com.example.myPersonalApp.talk.TalkService;
 import com.example.myPersonalApp.user.User;
 import com.example.myPersonalApp.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -32,7 +35,8 @@ public class AuthController {
 
     @Autowired
     private RichiesteTalkService richiesteTalkService;
-
+@Autowired
+private TalkService talkService;
 
     @PostMapping("/login")
     public UserLoginSuccessDTO login(@RequestBody UserLoginDTO body) throws Exception {
@@ -87,5 +91,28 @@ public List<Categoria> getAllCategories(){
             throw new BadRequestException(validation.getAllErrors());
         }
         return richiesteTalkService.save(richiesteTalkDTO);
+    }
+    @GetMapping("/talk")
+    public Page<Talk> getAll(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size,
+                             @RequestParam(defaultValue = "id") String orderBy){
+        return talkService.getAllPaginated(page,size,orderBy);
+    }
+
+    @GetMapping("/talk/categoria/{categoria}")
+    public  Page<Talk> getAllByCategoria(@PathVariable String categoria,
+                                         @RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "10")int size,@RequestParam(defaultValue = "id") String orderBy){
+        Categoria categoria1 = Categoria.valueOf(categoria);
+        return talkService.findByCategoria(categoria1,page,size,orderBy);
+    }
+    @GetMapping("/talk/titolo/{titolo}")
+    public  Page<Talk> getAllByTitolo(@PathVariable String titolo,
+                                      @RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "10")int size,@RequestParam(defaultValue = "id") String orderBy){
+        return talkService.findByTitolo(titolo,page,size,orderBy);
+    }
+    @GetMapping("/talk/titoloAndCategoria/{titolo}/{categoria}")
+    public  Page<Talk> getAllByTitoloAndCategoria(@PathVariable String titolo,@PathVariable String categoria,
+                                                  @RequestParam(defaultValue = "1") int page,@RequestParam(defaultValue = "10")int size,@RequestParam(defaultValue = "id") String orderBy){
+        Categoria categoria1 = Categoria.valueOf(categoria);
+        return talkService.findByTitoloAndCategoria(titolo,categoria1,page,size,orderBy);
     }
 }
