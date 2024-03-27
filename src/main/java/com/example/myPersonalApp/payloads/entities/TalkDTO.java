@@ -8,9 +8,13 @@ public record TalkDTO(
         @NotEmpty(message = "Categoria vuota")
         String categoria,
         @NotNull(message = "User id vuoto")
-long user_id,
+        long user_id,
         @NotEmpty(message = "Testo vuoto")
-        String testo,
+        String testo1,
+        @NotEmpty(message = "Testo vuoto")
+        String testo2,
+        @NotEmpty(message = "Testo vuoto")
+        String testo3,
         @NotEmpty(message = "Titolo necessario")
         String titolo
         ) {

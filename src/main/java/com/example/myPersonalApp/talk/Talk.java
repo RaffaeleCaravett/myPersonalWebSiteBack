@@ -16,7 +16,10 @@ public class Talk {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Lob
-private String testo;
+private String testo1;
+    private String testo2;
+    private String testo3;
+    @Enumerated(EnumType.STRING)
     private Categoria categoria;
 private String titolo;
 @OneToMany(mappedBy = "talk")
